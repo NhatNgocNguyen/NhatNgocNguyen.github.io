@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV - Your Name</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600&family=Archivo:wght@300;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">Your Name</a>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="publications.html" class="nav-link">Publications</a></li>
+                <li><a href="cv.html" class="nav-link active">CV</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+                    <span class="theme-icon">🌙</span>
+                </button>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section class="page-header">
+            <h1 class="page-title">Curriculum Vitae</h1>
+            <a href="#" class="cv-download">Download PDF</a>
+        </section>
+
+        <section class="cv-section">
+            <h2 class="section-title">Education</h2>
+            <div class="cv-item">
+                <div class="cv-header">
+                    <div>
+                        <h3 class="cv-title">Ph.D. in [Your Field]</h3>
+                        <p class="cv-institution">University Name</p>
+                    </div>
+                    <span class="cv-date">2023 - Present</span>
+                </div>
+                <p class="cv-description">
+                    Dissertation: "Your Dissertation Title"<br>
+                    Advisor: Prof. Advisor Name
+                </p>
+            </div>
+
+            <div class="cv-item">
+                <div class="cv-header">
+                    <div>
+                        <h3 class="cv-title">M.S. in [Your Field]</h3>
+                        <p class="cv-institution">University Name</p>
+                    </div>
+                    <span class="cv-date">2021 - 2023</span>
+                </div>
+                <p class="cv-description">
+                    Thesis: "Your Thesis Title"
+                </p>
+            </div>
+
+            <div class="cv-item">
+                <div class="cv-header">
+                    <div>
+                        <h3 class="cv-title">B.S. in [Your Field]</h3>
+                        <p class="cv-institution">University Name</p>
+                    </div>
+                    <span class="cv-date">2017 - 2021</span>
+                </div>
+                <p class="cv-description">
+                    Graduated with Honors
+                </p>
+            </div>
+        </section>
+
+        <section class="cv-section">
+            <h2 class="section-title">Experience</h2>
+            <div class="cv-item">
+                <div class="cv-header">
+                    <div>
+                        <h3 class="cv-title">Research Assistant</h3>
+                        <p class="cv-institution">University/Lab Name</p>
+                    </div>
+                    <span class="cv-date">2023 - Present</span>
+                </div>
+                <p class="cv-description">
+                    Describe your research responsibilities and achievements. 
+                    Include key projects, methodologies, and contributions.
+                </p>
+            </div>
+
+            <div class="cv-item">
+                <div class="cv-header">
+                    <div>
+                        <h3 class="cv-title">Teaching Assistant</h3>
+                        <p class="cv-institution">University Name</p>
+                    </div>
+                    <span class="cv-date">2022 - 2023</span>
+                </div>
+                <p class="cv-description">
+                    Courses: Course Name 1, Course Name 2<br>
+                    Responsibilities and achievements in teaching role.
+                </p>
+            </div>
+
+            <div class="cv-item">
+                <div class="cv-header">
+                    <div>
+                        <h3 class="cv-title">Research Intern</h3>
+                        <p class="cv-institution">Company/Institution Name</p>
+                    </div>
+                    <span class="cv-date">Summer 2022</span>
+                </div>
+                <p class="cv-description">
+                    Brief description of internship work and projects.
+                </p>
+            </div>
+        </section>
+
+        <section class="cv-section">
+            <h2 class="section-title">Awards & Honors</h2>
+            <div class="awards-list">
+                <div class="award-item">
+                    <span class="award-name">Award Name</span>
+                    <span class="award-date">2025</span>
+                </div>
+                <div class="award-item">
+                    <span class="award-name">Fellowship Name</span>
+                    <span class="award-date">2024</span>
+                </div>
+                <div class="award-item">
+                    <span class="award-name">Scholarship Name</span>
+                    <span class="award-date">2021</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2026 Your Name. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Dark mode toggle functionality
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeIcon = document.querySelector('.theme-icon');
+        const html = document.documentElement;
+
+        // Check for saved theme preference or default to light mode
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        html.setAttribute('data-theme', currentTheme);
+        updateThemeIcon(currentTheme);
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon(newTheme);
+        });
+
+        function updateThemeIcon(theme) {
+            themeIcon.textContent = theme === 'light' ? '🌙' : '☀️';
+        }
+    </script>
+</body>
+</html>

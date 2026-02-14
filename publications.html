@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Publications - Your Name</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600&family=Archivo:wght@300;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">Your Name</a>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="publications.html" class="nav-link active">Publications</a></li>
+                <li><a href="cv.html" class="nav-link">CV</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+                    <span class="theme-icon">🌙</span>
+                </button>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section class="page-header">
+            <h1 class="page-title">Publications</h1>
+        </section>
+
+        <section class="publications-section">
+            <div class="year-group">
+                <h3 class="year-title">2026</h3>
+                <div class="publication-item">
+                    <h4 class="pub-title">Title of Your Paper</h4>
+                    <p class="pub-authors"><strong>Your Name</strong>, Co-Author Name, Another Author</p>
+                    <p class="pub-venue"><em>Conference/Journal Name</em>, Year</p>
+                    <div class="pub-links">
+                        <a href="#" class="pub-link">PDF</a>
+                        <a href="#" class="pub-link">arXiv</a>
+                        <a href="#" class="pub-link">Code</a>
+                    </div>
+                </div>
+
+                <div class="publication-item">
+                    <h4 class="pub-title">Another Research Paper Title</h4>
+                    <p class="pub-authors">Co-Author Name, <strong>Your Name</strong>, Third Author</p>
+                    <p class="pub-venue"><em>Journal Name</em>, Vol. X, No. Y, Year</p>
+                    <div class="pub-links">
+                        <a href="#" class="pub-link">PDF</a>
+                        <a href="#" class="pub-link">DOI</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="year-group">
+                <h3 class="year-title">2025</h3>
+                <div class="publication-item">
+                    <h4 class="pub-title">Title of an Earlier Publication</h4>
+                    <p class="pub-authors"><strong>Your Name</strong>, Collaborator Name</p>
+                    <p class="pub-venue"><em>Workshop/Conference Name</em>, Year</p>
+                    <div class="pub-links">
+                        <a href="#" class="pub-link">PDF</a>
+                        <a href="#" class="pub-link">Slides</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2026 Your Name. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Dark mode toggle functionality
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeIcon = document.querySelector('.theme-icon');
+        const html = document.documentElement;
+
+        // Check for saved theme preference or default to light mode
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        html.setAttribute('data-theme', currentTheme);
+        updateThemeIcon(currentTheme);
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon(newTheme);
+        });
+
+        function updateThemeIcon(theme) {
+            themeIcon.textContent = theme === 'light' ? '🌙' : '☀️';
+        }
+    </script>
+</body>
+</html>

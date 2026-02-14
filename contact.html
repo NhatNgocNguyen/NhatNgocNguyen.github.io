@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Your Name</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600&family=Archivo:wght@300;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">Your Name</a>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="publications.html" class="nav-link">Publications</a></li>
+                <li><a href="cv.html" class="nav-link">CV</a></li>
+                <li><a href="contact.html" class="nav-link active">Contact</a></li>
+                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+                    <span class="theme-icon">🌙</span>
+                </button>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section class="page-header">
+            <h1 class="page-title">Contact</h1>
+        </section>
+
+        <section class="contact-section">
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <h3 class="contact-label">Email</h3>
+                        <a href="/cdn-cgi/l/email-protection#6f16001a1d410a020e06032f1a0106190a1d1c061b16410a0b1a" class="contact-link">
+                            <span class="__cf_email__" data-cfemail="41382e34336f242c20282d01342f28372433322835386f242534">[email&#160;protected]</span>
+                        </a>
+                    </div>
+
+                    <div class="contact-item">
+                        <h3 class="contact-label">Office</h3>
+                        <p class="contact-text">
+                            Building Name, Room 123<br>
+                            Department Name<br>
+                            University Name<br>
+                            City, State/Country ZIP
+                        </p>
+                    </div>
+
+                    <div class="contact-item">
+                        <h3 class="contact-label">Links</h3>
+                        <div class="social-links">
+                            <a href="#" class="social-link">Google Scholar</a>
+                            <a href="#" class="social-link">GitHub</a>
+                            <a href="#" class="social-link">LinkedIn</a>
+                            <a href="#" class="social-link">Twitter/X</a>
+                            <a href="#" class="social-link">ORCID</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-message">
+                    <h3 class="contact-label">Get in Touch</h3>
+                    <p class="contact-text">
+                        I'm always interested in discussing research collaborations, 
+                        potential projects, or opportunities. Feel free to reach out 
+                        via email if you'd like to connect.
+                    </p>
+                    <p class="contact-text">
+                        If you're a student interested in working with me or learning 
+                        more about my research, please include details about your 
+                        background and interests in your message.
+                    </p>
+                </div>
+            </div>
+          </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2026 Your Name. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Dark mode toggle functionality
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeIcon = document.querySelector('.theme-icon');
+        const html = document.documentElement;
+
+        // Check for saved theme preference or default to light mode
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        html.setAttribute('data-theme', currentTheme);
+        updateThemeIcon(currentTheme);
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon(newTheme);
+        });
+
+        function updateThemeIcon(theme) {
+            themeIcon.textContent = theme === 'light' ? '🌙' : '☀️';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nhat Nguyen - Academic Profile</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600&family=Archivo:wght@300;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">Nhat Nguyen</a>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link active">Home</a></li>
+                <li><a href="publications.html" class="nav-link">Publications</a></li>
+                <li><a href="cv.html" class="nav-link">CV</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+                    <span class="theme-icon">🌙</span>
+                </button>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section class="hero">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="hero-title">Nhat Nguyen</h1>
+                    <p class="hero-subtitle">Final year student</p>
+                    <p class="hero-affiliation">Posts and Telecommunications Institute of Technology, PTIT</p>
+                </div>
+                <div class="hero-avatar">
+                    <img src="avatar.jpg" alt="Nhat Nguyen" class="avatar-img">
+                </div>
+            </div>
+        </section>
+
+        <section class="about-section">
+            <h2 class="section-title">About</h2>
+            <div class="about-content">
+                <p>
+                    Write a brief introduction about yourself here. Describe your research interests, 
+                    academic background, and what drives your work. Keep it engaging and accessible 
+                    to both specialists in your field and a general academic audience.
+                </p>
+                <p>
+                    You can add more paragraphs to elaborate on your research focus, methodology, 
+                    or current projects. Make it personal but professional.
+                </p>
+            </div>
+        </section>
+
+        <section class="news-section">
+            <h2 class="section-title">News & Updates</h2>
+            <div class="news-list">
+                <div class="news-item">
+                    <span class="news-date">Feb 2026</span>
+                    <p class="news-content">
+                        Add your latest news here. This could be about paper acceptances, 
+                        conference presentations, awards, or other academic milestones.
+                    </p>
+                </div>
+                <div class="news-item">
+                    <span class="news-date">Jan 2026</span>
+                    <p class="news-content">
+                        Another news item. Keep these concise and focused on significant updates.
+                    </p>
+                </div>
+                <div class="news-item">
+                    <span class="news-date">Dec 2025</span>
+                    <p class="news-content">
+                        You can add as many news items as you want. They'll display in a clean, 
+                        chronological format.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2026 Your Name. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Dark mode toggle functionality
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeIcon = document.querySelector('.theme-icon');
+        const html = document.documentElement;
+
+        // Check for saved theme preference or default to light mode
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        html.setAttribute('data-theme', currentTheme);
+        updateThemeIcon(currentTheme);
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon(newTheme);
+        });
+
+        function updateThemeIcon(theme) {
+            themeIcon.textContent = theme === 'light' ? '🌙' : '☀️';
+        }
+    </script>
+</body>
+</html>
