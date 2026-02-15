@@ -116,6 +116,20 @@
             themeIcon.textContent = theme === 'light' ? '🌙' : '☀️';
         }
 
+        // Add this to the script section in both index.html and publications.html
+        document.addEventListener('DOMContentLoaded', function() {
+            // Handle hash navigation on page load
+            if (window.location.hash) {
+                const hash = window.location.hash;
+                // Clear the hash first
+                window.location.hash = '';
+                // Then set it again to trigger the scroll
+                setTimeout(() => {
+                    window.location.hash = hash;
+                }, 100);
+            }
+        });
+
         // Handle hash navigation
         function handleHashNavigation() {
             if (window.location.hash) {
