@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600&family=Archivo:wght@300;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <nav class="navbar">
@@ -25,99 +25,19 @@
         </div>
     </nav>
 
-    <main class="container">
+    <main class="container cv-page">
         <section class="page-header">
             <h1 class="page-title">Curriculum Vitae</h1>
-            <!-- <a href="#" class="cv-download">Download PDF</a> -->
+            <a href="CV.pdf" class="cv-download" download>Download PDF</a>
         </section>
 
-        <section class="cv-section">
-            <h2 class="section-title">Education</h2>
-            <!-- <div class="cv-item">
-                <div class="cv-header">
-                    <div>
-                        <h3 class="cv-title">Ph.D. in [Your Field]</h3>
-                        <p class="cv-institution">University Name</p>
-                    </div>
-                    <span class="cv-date">2023 - Present</span>
-                </div>
-                <p class="cv-description">
-                    Dissertation: "Your Dissertation Title"<br>
-                    Advisor: Prof. Advisor Name
-                </p>
-            </div> -->
-
-            <div class="cv-item">
-                <div class="cv-header">
-                    <div>
-                        <h3 class="cv-title">Bachelor of Engineering (Honors Program)</h3>
-                        <p class="cv-institution">Posts and Telecommunications Institute of Technology, PTIT</p>
-                    </div>
-                    <span class="cv-date">2022 - 2027</span>
-                </div>
-                <p class="cv-description">
-                    • GPA: 3.57/4.0<br>
-                    • Merit-based scholarship recipient (4/6 terms)
-                </p>
-            </div>
-        </section>
-
-        <section class="cv-section">
-            <h2 class="section-title">Experience</h2>
-            <div class="cv-item">
-                <div class="cv-header">
-                    <div>
-                        <h3 class="cv-title">Research Assistant</h3>
-                        <p class="cv-institution">Nuturing IT Student Talent Lab, PTIT NITS</p>
-                    </div>
-                    <span class="cv-date">Oct 2024 - Present</span>
-                </div>
-                <p class="cv-description">
-                    • Contributed to research on deep learning models and their application to real-world problems
-                </p>
-            </div>
-
-            <div class="cv-item">
-                <div class="cv-header">
-                    <div>
-                        <h3 class="cv-title">AI Engineer</h3>
-                        <p class="cv-institution">Cloud Ace</p>
-                    </div>
-                    <span class="cv-date">Sep 2025 - Present</span>
-                </div>
-                <p class="cv-description">
-                    • Designed and delivered end-to-end machine learning solutions on Google Cloud Platform
-                </p>
-            </div>
-
-            <div class="cv-item">
-                <div class="cv-header">
-                    <div>
-                        <h3 class="cv-title">Backend Engineer</h3>
-                        <p class="cv-institution">Nobisoft</p>
-                    </div>
-                    <span class="cv-date">July 2024 - Sep 2025</span>
-                </div>
-                <p class="cv-description">
-                    • Developed production AI systems and APIs for internal and customer applications
-                </p>
-            </div>
-        </section>
-        <section class="cv-section">
-            <h2 class="section-title">Licenses & Certifications</h2>
-
-            <div class="cv-item">
-                <div class="cv-header">
-                    <div>
-                        <h3 class="cv-title">Google Cloud Professional Machine Learning Engineer</h3>
-                        <p class="cv-institution">Google</p>
-                    </div>
-                    <span class="cv-date">Apr 2026 – Apr 2028</span>
-                </div>
-                <p class="cv-description">
-                    <a href="https://www.credly.com/badges/7d651379-255a-4c62-86ea-2f45f58a0f42/public_url" target="_blank" rel="noopener noreferrer">View credential</a><br>
-                </p>
-            </div>
+        <section class="cv-viewer-section">
+            <div id="cv-viewer" class="cv-viewer" aria-label="Nhat Nguyen Curriculum Vitae"></div>
+            <p id="cv-fallback" class="cv-fallback" hidden>
+                If the CV does not appear,
+                <a href="CV.pdf" target="_blank" rel="noopener noreferrer">open the PDF</a>
+                or download it above.
+            </p>
         </section>
     </main>
 
@@ -125,13 +45,12 @@
         <p>&copy; 2026 Nhat Nguyen. All rights reserved.</p>
     </footer>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
     <script>
-        // Dark mode toggle functionality
         const themeToggle = document.getElementById('theme-toggle');
         const themeIcon = document.querySelector('.theme-icon');
         const html = document.documentElement;
 
-        // Check for saved theme preference or default to light mode
         const currentTheme = localStorage.getItem('theme') || 'light';
         html.setAttribute('data-theme', currentTheme);
         updateThemeIcon(currentTheme);
@@ -139,7 +58,7 @@
         themeToggle.addEventListener('click', () => {
             const currentTheme = html.getAttribute('data-theme');
             const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-            
+
             html.setAttribute('data-theme', newTheme);
             localStorage.setItem('theme', newTheme);
             updateThemeIcon(newTheme);
@@ -148,6 +67,33 @@
         function updateThemeIcon(theme) {
             themeIcon.textContent = theme === 'light' ? '🌙' : '☀️';
         }
+
+        pdfjsLib.GlobalWorkerOptions.workerSrc =
+            'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+        const viewer = document.getElementById('cv-viewer');
+
+        pdfjsLib.getDocument('CV.pdf').promise.then(async (pdf) => {
+            const width = viewer.clientWidth || 900;
+
+            for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
+                const page = await pdf.getPage(pageNum);
+                const unscaled = page.getViewport({ scale: 1 });
+                const viewport = page.getViewport({ scale: width / unscaled.width });
+                const canvas = document.createElement('canvas');
+                const context = canvas.getContext('2d');
+
+                canvas.className = 'cv-page-canvas';
+                canvas.width = viewport.width;
+                canvas.height = viewport.height;
+                viewer.appendChild(canvas);
+
+                await page.render({ canvasContext: context, viewport }).promise;
+            }
+        }).catch(() => {
+            document.getElementById('cv-fallback').hidden = false;
+            viewer.innerHTML = '';
+        });
     </script>
 </body>
 </html>
