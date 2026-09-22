@@ -177,6 +177,39 @@ body {
     color: var(--color-text-light);
 }
 
+.hero-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem 1.15rem;
+    margin-top: var(--spacing-sm);
+}
+
+.hero-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--color-accent);
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.hero-link:hover,
+.hero-link:visited {
+    color: var(--color-accent);
+    text-decoration: none;
+}
+
+.hero-link:hover {
+    color: var(--color-accent-dark);
+}
+
+.hero-link svg {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+}
+
 /* Page Header */
 .page-header {
     margin-bottom: var(--spacing-lg);
@@ -228,7 +261,6 @@ body {
 .news-section,
 .publications-section,
 .cv-section,
-.contact-section,
 .cv-viewer-section {
     margin-bottom: var(--spacing-xl);
 }
@@ -379,55 +411,6 @@ body {
     font-size: 0.95rem;
 }
 
-/* Contact Section */
-.contact-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--spacing-lg);
-}
-
-.contact-item {
-    margin-bottom: var(--spacing-md);
-}
-
-.contact-label {
-    font-size: 1.05rem;
-    font-weight: 600;
-    color: var(--color-text);
-    margin-bottom: var(--spacing-sm);
-}
-
-.contact-link {
-    color: var(--color-accent);
-    text-decoration: none;
-    font-size: 1.05rem;
-}
-
-.contact-link:hover {
-    text-decoration: underline;
-}
-
-.contact-text {
-    color: var(--color-text);
-    line-height: 1.7;
-}
-
-.social-links {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-xs);
-}
-
-.social-link {
-    color: var(--color-accent);
-    text-decoration: none;
-    font-size: 0.95rem;
-}
-
-.social-link:hover {
-    text-decoration: underline;
-}
-
 .news-content a,
 .news-content a:visited {
     color: var(--color-accent);
@@ -480,6 +463,10 @@ a:visited {
         text-align: center;
     }
 
+    .hero-links {
+        justify-content: center;
+    }
+
     .avatar-img {
         width: 140px;
         height: 140px;
@@ -497,9 +484,4 @@ a:visited {
         flex-direction: column;
         align-items: flex-start;
     }
-
-    .contact-grid {
-        grid-template-columns: 1fr;
-    }
-
 }
