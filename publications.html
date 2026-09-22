@@ -46,7 +46,7 @@
 
             <div class="year-group">
                 <h3 class="year-title">2026</h3>
-                <div class="publication-item" id="vivid-lrec-2026">
+                <div class="publication-item">
                     <h4 class="pub-title">VIVID: A Culturally Grounded Benchmark Exposing the Figurative Language Gap in Vietnamese NLP</h4>
                     <p class="pub-authors">Tu Tran Do*, <strong>Nhat Ngoc Nguyen*</strong>, Tung Khanh Tran, Hoang D. Nguyen, Tu Minh Phuong, Long Hoang Dang</p>
                     <p class="pub-venue"><em>LREC</em>, 2026</p>
@@ -97,20 +97,6 @@
         function updateThemeIcon(theme) {
             themeIcon.textContent = theme === 'light' ? '🌙' : '☀️';
         }
-
-        // Add this to the script section in both index.html and publications.html
-        document.addEventListener('DOMContentLoaded', function() {
-            // Handle hash navigation on page load
-            if (window.location.hash) {
-                const hash = window.location.hash;
-                // Clear the hash first
-                window.location.hash = '';
-                // Then set it again to trigger the scroll
-                setTimeout(() => {
-                    window.location.hash = hash;
-                }, 100);
-            }
-        });
     </script>
 </body>
 </html>

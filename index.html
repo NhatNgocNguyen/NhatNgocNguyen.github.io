@@ -69,11 +69,7 @@
                 <div class="news-item">
                     <span class="news-date">Feb 2026</span>
                     <p class="news-content">
-                        Our paper, 
-                        <a href="publications.html#vivid-lrec-2026">
-                            <em>VIVID: A Culturally Grounded Benchmark Exposing the Figurative Language Gap in Vietnamese NLP</em>
-                        </a>, 
-                        has been accepted to LREC 2026 (main conference)
+                        Our paper, VIVID: A Culturally Grounded Benchmark Exposing the Figurative Language Gap in Vietnamese NLP has been accepted to LREC 2026 (main conference)
                     </p>
                 </div>
 
@@ -108,20 +104,6 @@
         function updateThemeIcon(theme) {
             themeIcon.textContent = theme === 'light' ? '🌙' : '☀️';
         }
-
-        // Add this to the script section in both index.html and publications.html
-        document.addEventListener('DOMContentLoaded', function() {
-            // Handle hash navigation on page load
-            if (window.location.hash) {
-                const hash = window.location.hash;
-                // Clear the hash first
-                window.location.hash = '';
-                // Then set it again to trigger the scroll
-                setTimeout(() => {
-                    window.location.hash = hash;
-                }, 100);
-            }
-        });
     </script>
 </body>
 </html>
