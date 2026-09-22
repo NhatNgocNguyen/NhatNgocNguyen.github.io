@@ -386,16 +386,23 @@ body {
     border: 1px solid var(--color-accent);
     border-radius: 4px;
     font-weight: 500;
+    background-color: transparent;
+}
+
+.pub-link:visited {
+    color: var(--color-accent);
+    background-color: transparent;
 }
 
 .pub-link:hover,
-.pub-link:visited {
+.pub-link:hover:visited {
     background-color: var(--color-accent);
     color: #ffffff;
     text-decoration: none;
 }
 
-[data-theme="dark"] .pub-link:hover {
+[data-theme="dark"] .pub-link:hover,
+[data-theme="dark"] .pub-link:hover:visited {
     color: #0f1724;
 }
 
