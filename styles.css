@@ -127,17 +127,35 @@ body {
     flex-direction: column;
 }
 
-/* Hero Section */
-.hero {
-    margin-bottom: var(--spacing-xl);
+.page-home .home-layout {
+    display: grid;
+    grid-template-columns: 280px minmax(0, 1fr);
+    gap: var(--spacing-lg);
+    max-width: 1100px;
+    align-items: start;
+    padding-top: var(--spacing-lg);
     padding-bottom: var(--spacing-lg);
-    border-bottom: 1px solid var(--color-border);
 }
 
-.hero-content {
+.home-sidebar {
     display: flex;
-    align-items: center;
-    gap: var(--spacing-lg);
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-md);
+    position: sticky;
+    top: 5.5rem;
+}
+
+.home-content {
+    min-width: 0;
+}
+
+.page-home .footer {
+    background: none;
+    border-top: 1px solid var(--color-border);
+    margin-top: var(--spacing-md);
+    text-align: left;
+    padding: var(--spacing-md) 0 0;
 }
 
 .hero-avatar {
@@ -153,12 +171,12 @@ body {
 }
 
 .hero-text {
-    flex: 1;
+    width: 100%;
 }
 
 .hero-title {
     font-family: var(--font-display);
-    font-size: 2.8rem;
+    font-size: 2rem;
     font-weight: 700;
     color: var(--color-text);
     margin-bottom: var(--spacing-xs);
@@ -173,14 +191,16 @@ body {
 }
 
 .hero-affiliation {
-    font-size: 1.05rem;
+    font-size: 1rem;
     color: var(--color-text-light);
+    line-height: 1.45;
 }
 
 .hero-links {
     display: flex;
-    flex-wrap: wrap;
-    gap: 0.7rem 1.15rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
     margin-top: var(--spacing-sm);
 }
 
@@ -458,13 +478,31 @@ a:visited {
         gap: var(--spacing-sm);
     }
 
-    .hero-content {
+    .page-home .home-layout {
+        display: flex;
         flex-direction: column;
+        gap: var(--spacing-lg);
+        padding-top: var(--spacing-lg);
+        padding-bottom: var(--spacing-lg);
+    }
+
+    .home-sidebar {
+        position: static;
+        align-items: center;
+        text-align: center;
+    }
+
+    .home-content {
+        overflow: visible;
+        padding-right: 0;
+    }
+
+    .page-home .footer {
         text-align: center;
     }
 
     .hero-links {
-        justify-content: center;
+        align-items: center;
     }
 
     .avatar-img {
@@ -473,7 +511,7 @@ a:visited {
     }
 
     .hero-title {
-        font-size: 2.2rem;
+        font-size: 2rem;
     }
 
     .page-title {
