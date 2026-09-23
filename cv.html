@@ -71,27 +71,53 @@
             'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
 
         const viewer = document.getElementById('cv-viewer');
+        let pdfDoc = null;
+        let renderToken = 0;
 
-        pdfjsLib.getDocument('CV.pdf').promise.then(async (pdf) => {
+        async function renderCV() {
+            if (!pdfDoc) return;
+
+            const token = ++renderToken;
             const width = viewer.clientWidth || 900;
+            const outputScale = window.devicePixelRatio || 1;
+            viewer.innerHTML = '';
 
-            for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
-                const page = await pdf.getPage(pageNum);
+            for (let pageNum = 1; pageNum <= pdfDoc.numPages; pageNum++) {
+                const page = await pdfDoc.getPage(pageNum);
+                if (token !== renderToken) return;
+
                 const unscaled = page.getViewport({ scale: 1 });
                 const viewport = page.getViewport({ scale: width / unscaled.width });
                 const canvas = document.createElement('canvas');
-                const context = canvas.getContext('2d');
+                const context = canvas.getContext('2d', { alpha: false });
 
                 canvas.className = 'cv-page-canvas';
-                canvas.width = viewport.width;
-                canvas.height = viewport.height;
+                canvas.width = Math.floor(viewport.width * outputScale);
+                canvas.height = Math.floor(viewport.height * outputScale);
+                canvas.style.width = `${Math.floor(viewport.width)}px`;
+                canvas.style.height = `${Math.floor(viewport.height)}px`;
                 viewer.appendChild(canvas);
 
-                await page.render({ canvasContext: context, viewport }).promise;
+                await page.render({
+                    canvasContext: context,
+                    viewport,
+                    transform: outputScale !== 1 ? [outputScale, 0, 0, outputScale, 0, 0] : null
+                }).promise;
             }
+        }
+
+        pdfjsLib.getDocument('CV.pdf').promise.then((pdf) => {
+            pdfDoc = pdf;
+            return renderCV();
         }).catch(() => {
             document.getElementById('cv-fallback').hidden = false;
             viewer.innerHTML = '';
+        });
+
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(renderCV, 150);
         });
     </script>
 </body>
