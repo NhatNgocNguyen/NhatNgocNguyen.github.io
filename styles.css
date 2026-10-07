@@ -236,6 +236,17 @@ body {
     flex-shrink: 0;
 }
 
+.flag-counter {
+    display: inline-block;
+    margin-bottom: var(--spacing-sm);
+}
+
+.flag-counter img {
+    display: block;
+    max-width: 100%;
+    border-radius: 4px;
+}
+
 /* Page Header */
 .page-header {
     margin-bottom: var(--spacing-lg);
