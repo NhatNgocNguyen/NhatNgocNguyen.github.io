@@ -320,33 +320,152 @@ body {
 }
 
 /* News Section */
+.news-window {
+    background:
+        linear-gradient(180deg, var(--color-accent-soft), transparent 42%),
+        var(--color-card);
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 1px 0 rgba(27, 40, 56, 0.04);
+}
+
+.news-window-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.25rem 0.85rem;
+    border-bottom: 1px solid var(--color-border);
+    background: color-mix(in srgb, var(--color-card) 88%, transparent);
+    backdrop-filter: blur(6px);
+}
+
+.news-window-header .section-title {
+    margin-bottom: 0;
+    font-size: 1.15rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
 .news-list {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-md);
+    max-height: 20rem;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding: 0.35rem 0.5rem 0.85rem 0.85rem;
+    scrollbar-gutter: stable;
+    mask-image: linear-gradient(to bottom, transparent, #000 12px, #000 calc(100% - 16px), transparent);
+}
+
+.news-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.news-list::-webkit-scrollbar-thumb {
+    background-color: color-mix(in srgb, var(--color-accent) 35%, var(--color-border));
+    border-radius: 999px;
+}
+
+.news-list::-webkit-scrollbar-track {
+    background-color: transparent;
 }
 
 .news-item {
-    padding: var(--spacing-md);
-    background-color: var(--color-card);
-    border: 1px solid var(--color-border);
-    border-radius: 6px;
+    position: relative;
+    display: grid;
+    grid-template-columns: 5.5rem minmax(0, 1fr);
+    gap: 0.85rem 1rem;
+    padding: 0.95rem 0.75rem 0.95rem 0.35rem;
+    border-radius: 8px;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.news-item + .news-item {
+    border-top: 1px dashed color-mix(in srgb, var(--color-border) 80%, transparent);
+}
+
+.news-item::before {
+    content: "";
+    position: absolute;
+    left: 5.5rem;
+    top: 1.35rem;
+    bottom: -0.1rem;
+    width: 1px;
+    background: linear-gradient(
+        to bottom,
+        var(--color-accent),
+        color-mix(in srgb, var(--color-border) 70%, transparent)
+    );
+    opacity: 0.45;
+}
+
+.news-item:last-child::before {
+    display: none;
+}
+
+.news-item:hover {
+    background-color: var(--color-accent-soft);
+    transform: translateX(2px);
 }
 
 .news-date {
-    display: inline-block;
-    font-size: 0.85rem;
-    font-weight: 600;
+    position: relative;
+    z-index: 1;
+    display: block;
+    width: 100%;
+    align-self: start;
+    margin-top: 0.15rem;
+    padding-right: 0.85rem;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
     color: var(--color-accent);
-    background-color: var(--color-accent-soft);
-    padding: 0.25rem 0.65rem;
-    border-radius: 3px;
-    margin-bottom: var(--spacing-sm);
+    white-space: nowrap;
+    text-align: right;
+}
+
+.news-date::after {
+    content: "";
+    position: absolute;
+    right: -0.15rem;
+    top: 50%;
+    width: 0.45rem;
+    height: 0.45rem;
+    border-radius: 50%;
+    background: var(--color-accent);
+    box-shadow: 0 0 0 3px var(--color-card);
+    transform: translateY(-50%);
 }
 
 .news-content {
     color: var(--color-text);
-    line-height: 1.6;
+    line-height: 1.55;
+    font-size: 0.98rem;
+}
+
+@media (max-width: 640px) {
+    .news-item {
+        grid-template-columns: 1fr;
+        gap: 0.45rem;
+        padding-left: 1.15rem;
+    }
+
+    .news-item::before {
+        left: 0.22rem;
+        top: 1.55rem;
+    }
+
+    .news-date {
+        text-align: left;
+        padding-right: 0;
+        padding-left: 0.85rem;
+    }
+
+    .news-date::after {
+        left: -0.05rem;
+        right: auto;
+    }
 }
 
 /* Publications Section */
@@ -392,9 +511,10 @@ body {
 }
 
 .pub-note {
-    margin-top: var(--spacing-sm);
-    font-size: 0.9rem;
-    color: var(--color-text-light);
+    margin: 0;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--color-text);
 }
 
 .pub-links {
